@@ -6,20 +6,17 @@
             app
         >
             <v-list dense>
-                <v-list-item link>
+                <v-list-item
+                    v-for="link in links"
+                    :key="link.title"
+                    :to="link.url"
+                    link
+                >
                     <v-list-item-action>
-                        <v-icon>mdi-home</v-icon>
+                        <v-icon>{{ link.icon }}</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>Home</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item link>
-                    <v-list-item-action>
-                        <v-icon>mdi-email</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Contact</v-list-item-title>
+                        <v-list-item-title>{{ link.title }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -67,7 +64,15 @@ export default {
   components: {},
 
   data: () => ({
-    drawer: null
+    drawer: null,
+    links: [
+      {
+        title: 'first', icon: 'mdi-home', url: '/about'
+      },
+      {
+        title: 'second', icon: 'mdi-home', url: '/home'
+      }
+    ]
   })
 }
 </script>
