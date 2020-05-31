@@ -2,7 +2,8 @@
     <v-app id="inspire">
         <v-navigation-drawer
             v-model="drawer"
-            :clipped="$vuetify.breakpoint.lgAndUp"
+            class="hidden-lg-and-up"
+            :clipped="$vuetify.breakpoint.smAndUp"
             app
         >
             <v-list dense>
@@ -26,7 +27,10 @@
             app
             dark
         >
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon
+                @click.stop="drawer = !drawer"
+                class="hidden-lg-and-up"
+            ></v-app-bar-nav-icon>
             <v-toolbar-title
                 style="width: 300px"
                 class="ml-0 pl-4"
@@ -42,11 +46,14 @@
                 class="hidden-sm-and-down"
             ></v-text-field>
             <v-spacer></v-spacer>
-            <v-btn icon>
-                <v-icon>mdi-apps</v-icon>
-            </v-btn>
-            <v-btn icon>
-                <v-icon>mdi-bell</v-icon>
+            <v-btn
+                v-for="link in links"
+                :key="link.title"
+                :to="link.url"
+                class="hidden-md-and-down"
+                icon
+            >{{ link.title }}
+                <v-icon>{{ link.icon}}</v-icon>
             </v-btn>
         </v-app-bar>
 
