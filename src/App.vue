@@ -2,7 +2,6 @@
     <v-app id="inspire">
         <v-navigation-drawer
             v-model="drawer"
-            class="hidden-lg-and-up"
             :clipped="$vuetify.breakpoint.smAndUp"
             app
         >
@@ -23,13 +22,13 @@
             </v-list>
         </v-navigation-drawer>
         <v-app-bar
-            :clipped-left="$vuetify.breakpoint.lgAndUp"
+            :clipped-left="$vuetify.breakpoint.smAndUp"
             app
             dark
         >
             <v-app-bar-nav-icon
                 @click.stop="drawer = !drawer"
-                class="hidden-lg-and-up"
+                class="hidden-md-and-up"
             ></v-app-bar-nav-icon>
             <v-toolbar-title
                 style="width: 300px"
@@ -37,20 +36,20 @@
             >
                 <span class="hidden-sm-and-down">Google Contacts</span>
             </v-toolbar-title>
-            <v-text-field
+            <!--<v-text-field
                 flat
                 solo-inverted
                 hide-details
                 prepend-inner-icon="mdi-magnify"
                 label="Search"
                 class="hidden-sm-and-down"
-            ></v-text-field>
+            ></v-text-field>-->
             <v-spacer></v-spacer>
             <v-btn
                 v-for="link in links"
                 :key="link.title"
                 :to="link.url"
-                class="hidden-md-and-down"
+                class="hidden-sm-and-down"
                 icon
             >{{ link.title }}
                 <v-icon>{{ link.icon}}</v-icon>
@@ -70,16 +69,27 @@ export default {
 
   components: {},
 
-  data: () => ({
-    drawer: null,
-    links: [
-      {
-        title: 'first', icon: 'mdi-home', url: '/about'
-      },
-      {
-        title: 'second', icon: 'mdi-home', url: '/home'
-      }
-    ]
-  })
+  data () {
+    return {
+      drawer: false,
+      links: [
+        {
+          title: 'Login', icon: 'mdi-lock', url: '/login'
+        },
+        {
+          title: 'Registration', icon: 'mdi-face', url: '/registration'
+        },
+        {
+          title: 'Order', icon: 'mdi-order', url: '/orders'
+        },
+        {
+          title: 'New add', icon: 'mdi-new', url: '/new'
+        },
+        {
+          title: 'My add', icon: 'mdi-list', url: '/list'
+        }
+      ]
+    }
+  }
 }
 </script>
